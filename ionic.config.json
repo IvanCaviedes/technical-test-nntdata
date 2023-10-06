@@ -1,0 +1,7 @@
+{
+  "name": "technical test nntdata",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
