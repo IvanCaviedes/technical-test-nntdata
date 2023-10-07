@@ -8,7 +8,7 @@ import { IonicRouteStrategy } from '@ionic/angular';
 import { notesRoutes } from './notes.routing';
 
 @NgModule({
-  declarations: [NotesComponent],
+  declarations: [NotesComponent, NotesListComponent],
   imports: [RouterModule.forChild(notesRoutes), SharedModule],
 })
 export class NotesModule {}
