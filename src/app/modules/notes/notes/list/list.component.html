@@ -1,3 +1,45 @@
-<p>
-  list works!
-</p>
+<ion-content class="ion-padding">
+  <div class="w-full flex justify-end mt-4 relative">
+    <ion-searchbar placeholder="Colombia" lass="px-0 mr-6" mode="ios"></ion-searchbar>
+    <ion-buttons id="click-trigger">
+      <ion-avatar class="w-12 h-12 bg-orange-300 overflow-hidden">
+        <img class="rounded-md" alt="Silhouette of a person's head"
+          src="https://api.dicebear.com/7.x/lorelei/svg?seed=ivan" />
+      </ion-avatar>
+    </ion-buttons>
+
+    <ion-popover trigger="click-trigger" triggerAction="click" mode="ios">
+      <ng-template>
+        <ion-content class="ion-padding">
+          <ion-button class="flex items-center" fill="outline" color="danger" expand="block">
+            <ion-icon class="text-lg" name="log-out-outline"></ion-icon>
+            Cerrar Sesion
+          </ion-button>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+  </div>
+  <div class="ml-1">
+    <h2 class="ion-text-left font-semibold text-3xl m-0">Notes</h2>
+    <span class="text-sm text-gray-400">recently added</span>
+  </div>
+  <ion-row>
+    <ion-col size="6" *ngFor="let tarea of listArr; let i=index;">
+      <div [ngClass]="getColorClass(i)" class="rounded-xl p-4 relative border border-gray-400">
+        <div class="flex ">
+          <h3 class="m-0 font-semibold text-xl">Birthday party preparation</h3>
+          <div class=" ml-1 h-10 w-10 mt-2">
+            <ion-img src="https://flagcdn.com/pt.svg"></ion-img>
+          </div>
+        </div>
+        <p class="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, pariatur?</p>
+        <ion-button class="mt-3 button-custom" size="small" fill="outline" color="dark">Delete Note</ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed" class="shadow-2xl">
+    <ion-fab-button>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
