@@ -1,1 +1,1 @@
-export type Layout = 'empty';
+export type Layout = 'empty' | 'tabs';
