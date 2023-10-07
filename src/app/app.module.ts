@@ -12,6 +12,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { notesRoutes } from './app.routing';
 import { CoreModule } from './core/core.module';
+import { MttDataMockApiModule } from '@ntt-data/lib/mock-api';
+import { mockApiServices } from './mock-api';
+import { NttdataModule } from './@ntt-data';
 
 const routerConfig: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,
@@ -24,6 +27,10 @@ const routerConfig: ExtraOptions = {
     BrowserModule,
     IonicModule.forRoot(),
     RouterModule.forRoot(notesRoutes, routerConfig),
+
+    NttdataModule,
+    MttDataMockApiModule.forRoot(mockApiServices),
+
     CoreModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
