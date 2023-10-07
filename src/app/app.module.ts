@@ -11,6 +11,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { notesRoutes } from './app.routing';
+import { CoreModule } from './core/core.module';
 
 const routerConfig: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,
@@ -23,6 +24,7 @@ const routerConfig: ExtraOptions = {
     BrowserModule,
     IonicModule.forRoot(),
     RouterModule.forRoot(notesRoutes, routerConfig),
+    CoreModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
