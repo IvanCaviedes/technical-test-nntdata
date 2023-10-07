@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 import { IsNoAuthGuard } from './core/auth/guards/no-auth.guard';
 import { IsAuthGuard } from './core/auth/guards/auth.guard';
 import { LayoutComponent } from './layout/layout.component';
+import { Layout } from './layout/layout.types';
 
 export const appRoutes: Route[] = [
   {
@@ -29,14 +30,21 @@ export const appRoutes: Route[] = [
             (m) => m.SignInModule
           ),
       },
+      {
+        path: 'sign-up',
+        loadChildren: () =>
+          import('./modules/auth/sign-up/sign-up.module').then(
+            (m) => m.SignUpModule
+          ),
+      },
     ],
   },
   {
     path: 'app',
-    canMatch: [IsAuthGuard],
+    // canMatch: [IsAuthGuard],
     component: LayoutComponent,
     data: {
-      layout: 'empty',
+      layout: 'tabs' as Layout,
     },
     children: [
       {

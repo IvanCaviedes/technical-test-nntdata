@@ -32,6 +32,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
     this._nttDataConfigService.config$
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((config: AppConfig) => {
+        console.log(config);
+
         this.config = config;
         this._updateLayout();
       });
@@ -61,22 +63,16 @@ export class LayoutComponent implements OnInit, OnDestroy {
     const layoutFromQueryParam = route.snapshot.queryParamMap.get(
       'layout'
     ) as Layout;
+
     if (layoutFromQueryParam) {
       this.layout = layoutFromQueryParam;
       if (this.config) {
         this.config.layout = layoutFromQueryParam;
       }
     }
-    const paths = route.pathFromRoot;
-    paths.forEach((path) => {
-      if (
-        path.routeConfig &&
-        path.routeConfig.data &&
-        path.routeConfig.data?.['layout']
-      ) {
-        // Set the layout
-        this.layout = path.routeConfig.data?.['layout'];
-      }
-    });
+
+    // const paths = route.pathFromRoot;
+
+    this.layout = route.snapshot.data?.['layout'];
   }
 }
