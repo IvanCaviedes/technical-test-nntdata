@@ -1,8 +1,9 @@
 import { Route } from '@angular/router';
 import { NoAuthGuard } from './core/auth/guards/no-auth.guard';
 import { AuthGuard } from './core/auth/guards/auth.guard';
+import { LayoutComponent } from './layout/layout.component';
 
-export const notesRoutes: Route[] = [
+export const appRoutes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
@@ -16,6 +17,10 @@ export const notesRoutes: Route[] = [
   {
     path: '',
     canMatch: [NoAuthGuard],
+    component: LayoutComponent,
+    data: {
+      layout: 'empty',
+    },
     children: [
       {
         path: 'sign-in',
@@ -29,6 +34,10 @@ export const notesRoutes: Route[] = [
   {
     path: 'app',
     canMatch: [AuthGuard],
+    component: LayoutComponent,
+    data: {
+      layout: 'empty',
+    },
     children: [
       {
         path: 'notes',
