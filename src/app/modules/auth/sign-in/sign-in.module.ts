@@ -8,10 +8,6 @@ import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [SignInComponent],
-  imports: [
-    RouterModule.forChild(authSignInRoutes),
-    CommonModule,
-    SharedModule,
-  ],
+  imports: [RouterModule.forChild(authSignInRoutes), SharedModule],
 })
 export class SignInModule {}
