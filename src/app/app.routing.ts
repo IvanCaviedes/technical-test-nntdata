@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
-import { NoAuthGuard } from './core/auth/guards/no-auth.guard';
-import { AuthGuard } from './core/auth/guards/auth.guard';
+import { IsNoAuthGuard } from './core/auth/guards/no-auth.guard';
+import { IsAuthGuard } from './core/auth/guards/auth.guard';
 import { LayoutComponent } from './layout/layout.component';
 
 export const appRoutes: Route[] = [
@@ -16,7 +16,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: '',
-    canMatch: [NoAuthGuard],
+    canMatch: [IsNoAuthGuard],
     component: LayoutComponent,
     data: {
       layout: 'empty',
@@ -33,7 +33,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'app',
-    canMatch: [AuthGuard],
+    canMatch: [IsAuthGuard],
     component: LayoutComponent,
     data: {
       layout: 'empty',
