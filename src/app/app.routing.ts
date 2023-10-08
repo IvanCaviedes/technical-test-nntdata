@@ -13,7 +13,7 @@ export const appRoutes: Route[] = [
   {
     path: 'signed-in-redirect',
     pathMatch: 'full',
-    redirectTo: 'notes',
+    redirectTo: 'app/notes',
   },
   {
     path: '',
@@ -39,9 +39,28 @@ export const appRoutes: Route[] = [
       },
     ],
   },
+
+  {
+    path: '',
+    canMatch: [IsAuthGuard],
+    component: LayoutComponent,
+    data: {
+      layout: 'empty',
+    },
+    children: [
+      {
+        path: 'sign-out',
+        loadChildren: () =>
+          import('app/modules/auth/sign-out/sign-out.module').then(
+            (m) => m.SignOutModule
+          ),
+      },
+    ],
+  },
+
   {
     path: 'app',
-    // canMatch: [IsAuthGuard],
+    canMatch: [IsAuthGuard],
     component: LayoutComponent,
     data: {
       layout: 'tabs' as Layout,
@@ -50,9 +69,7 @@ export const appRoutes: Route[] = [
       {
         path: 'notes',
         loadChildren: () =>
-          import('./modules/notes/notes/notes.module').then(
-            (m) => m.NotesModule
-          ),
+          import('./modules/notes/notes.module').then((m) => m.NotesModule),
       },
     ],
   },

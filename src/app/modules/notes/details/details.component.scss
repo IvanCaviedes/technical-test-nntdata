@@ -1,0 +1,20 @@
+.editor {
+  width: 100%;
+  padding: 6px;
+  overflow: scroll;
+}
+[contenteditable][placeholder]:empty:before {
+  content: attr(placeholder);
+  position: absolute;
+  color: gray;
+  background-color: transparent;
+}
+.shadow-banner {
+  -webkit-box-shadow: -2px -29px 54px -42px rgba(0, 0, 0, 0.56);
+  -moz-box-shadow: -2px -29px 54px -42px rgba(0, 0, 0, 0.56);
+  box-shadow: -2px -29px 54px -42px rgba(0, 0, 0, 0.56);
+}
+
+.checked {
+  @apply flex justify-center items-center text-xl text-black;
+}
