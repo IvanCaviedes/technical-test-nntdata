@@ -32,8 +32,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
     this._nttDataConfigService.config$
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((config: AppConfig) => {
-        console.log(config);
-
         this.config = config;
         this._updateLayout();
       });
