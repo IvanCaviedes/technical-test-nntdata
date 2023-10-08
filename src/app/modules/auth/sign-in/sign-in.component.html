@@ -1,0 +1,71 @@
+<ion-content class="ion-padding flex justify-between items-center bg-white">
+  <ion-row class="flex justify-center items-start h-full">
+    <div class="w-full p-5">
+      <ion-col size="12" size-md="6" class="w-full flex flex-col items-center">
+        <ion-img class="w-auto" src="assets/images/statistics.svg"></ion-img>
+        <ion-label class="ion-text-center text-3xl font-semibold" color="primary">Sign In</ion-label>
+        <p class="ion-text-center text-sm py-3 text-gray-400">Enter valid user name and password to continue</p>
+      </ion-col>
+      <ion-col size="12" size-md="6" class="w-full flex flex-col justify-between items-center">
+        <span class="text-red-700" *ngIf="showAlert">{{alert.message}}</span>
+        <form class="w-full" [formGroup]="signInForm" #signInNgForm="ngForm">
+          <div class="relative my-2">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+              <ion-icon name="person-outline" slot="start" class="text-gray-400 text-lg"></ion-icon>
+            </div>
+            <input [formControlName]="'username'" type="text" id="input-group-1"
+              class="bg-white border border-gray-300 text-gray-400 text-lg rounded-2xl block w-full pl-12 p-4"
+              placeholder="Username" autocomplete="username">
+          </div>
+          <span class="text-xs text-red-600 m-0" *ngIf="signInForm.get('username')?.hasError('required')">Username is
+            required</span>
+          <div class="relative my-2">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+              <ion-icon name="lock-closed-outline" slot="start" class="text-gray-400 text-lg"></ion-icon>
+            </div>
+            <input [formControlName]="'password'" type="{{ showPassword ? 'text' : 'password' }}" id="input-group-1"
+              class="bg-white border border-gray-300 text-gray-400 text-lg rounded-2xl block w-full pl-12 p-4"
+              placeholder="Password">
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3.5 " (click)="togglePasswordVisibility()">
+              <ion-icon *ngIf="showPassword" name="eye-off-outline" slot="start"
+                class="text-gray-400 text-2xl"></ion-icon>
+              <ion-icon *ngIf="!showPassword" name="eye-outline" slot="start" class="text-gray-400 text-2xl"></ion-icon>
+            </div>
+          </div>
+          <span class="text-xs text-red-600 m-0" *ngIf="signInForm.get('password')?.hasError('required')">Password is
+            required</span>
+          <div class="relative my-2">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+              <ion-icon name="location-outline" slot="start" class="text-gray-400 text-lg"></ion-icon>
+            </div>
+            <input [formControlName]="'country'" type="text" id="input-group-1"
+              class="bg-white border border-gray-300 text-gray-400 text-lg rounded-2xl block w-full pl-12 p-4"
+              placeholder="Colombia" autocomplete="country-name" (ngModelChange)="searchCountry($event)">
+          </div>
+          <span class=" text-xs text-red-600 m-0" *ngIf="signInForm.get('country')?.hasError('required')">Country is
+            required</span>
+          <span class="text-xs text-red-600 m-0" *ngIf="signInForm.get('country')?.hasError('minlength')">Minimo 3
+            caracteres</span>
+          <ion-item *ngIf="resultSearch">
+            <ion-list style="width: 100%; max-height: 200px; overflow-y: scroll;">
+              <ion-item *ngFor="let country of countries;" (click)="selectCountry(country.name.common)" button>
+                <ion-label>{{country.name.common}}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-item>
+          <ion-button (click)="signIn()" class="mt-4" expand="block">
+            <span class="!text-white" *ngIf="!signInForm.disabled">
+              Sign In
+            </span>
+            <ion-spinner color="light" name="circular" *ngIf="signInForm.disabled"></ion-spinner>
+          </ion-button>
+        </form>
+      </ion-col>
+    </div>
+    <ion-row class=" ion-text-center mb-4">
+      <ion-col>
+        <p>Haven't any account? <a routerLink="/sign-up">Sign Up</a></p>
+      </ion-col>
+    </ion-row>
+  </ion-row>
+</ion-content>
