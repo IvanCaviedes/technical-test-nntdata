@@ -1,0 +1,34 @@
+<ion-content class="ion-padding">
+  <div class="flex flex-col justify-between h-full w-full ">
+    <div class="w-full">
+      <ion-buttons>
+        <ion-back-button icon="arrow-back-outline" text="" color="dark" default-href="#"></ion-back-button>
+      </ion-buttons>
+      <form [formGroup]="DetailForm" id="detailForm">
+        <div class="mb-4">
+          <input class="w-full text-3xl " type="text" placeholder="your title" [formControlName]="'titulo'">
+        </div>
+        <div class="w-full">
+          <div #editorElement class="editor" contenteditable placeholder="Write your note"
+            (input)="onEditorInput($event)">
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+    <div class="w-full grid grid-cols-5 gap-11 bg-white h-14 items-end rounded-t-2xl shadow-banner">
+      <div class="h-10  bg-orange-500 rounded-xl" appCheckmark (click)="selectColor('orange')"></div>
+      <div class="h-10  bg-blue-500 rounded-xl" appCheckmark (click)="selectColor('blue')"></div>
+      <div class="h-10  bg-pink-500 rounded-xl" appCheckmark [color]="'orange'" (click)="selectColor('pink')"></div>
+      <div class="h-10  bg-teal-500 rounded-xl" appCheckmark [color]="'orange'" (click)="selectColor('teal')"></div>
+      <div class="h-10  bg-red-500 rounded-xl" appCheckmark [color]="'orange'" (click)="selectColor('red')"></div>
+    </div>
+  </div>
+  <ion-fab horizontal="center">
+    <ion-fab-button class="-mt-40" (click)="registerNote()">
+      <ion-icon *ngIf="!isEdit" name="checkmark-outline" color="light"></ion-icon>
+      <ion-icon *ngIf="isEdit" name="create-outline" color="light"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
